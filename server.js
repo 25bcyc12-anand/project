@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 
-const app = express();   // CREATE APP FIRST
+const app = express();   // create app
 
 app.use(cors());
 app.use(express.json());
 
-/* Serve frontend files */
+/* frontend ka file*/
 
 app.use(express.static(path.join(__dirname,"public")));
 
@@ -16,13 +16,13 @@ app.get("/", (req,res)=>{
 res.sendFile(path.join(__dirname,"public","index.html"));
 });
 
-/* MongoDB connection */
+/* mongodb connect */
 
 mongoose.connect("mongodb+srv://portfoliouser:dhurandhartherevenge194@portfolio.zhqkl0z.mongodb.net/?appName=portfolio")
 .then(()=>console.log("MongoDB Connected"))
 .catch(err=>console.log(err));
 
-/* Schema */
+/* Structure*/
 
 const Contact = mongoose.model("Contact",{
 name:String,
@@ -30,7 +30,7 @@ email:String,
 message:String
 });
 
-/* Contact API */
+/* contact api */
 
 app.post("/contact", async (req,res)=>{
 
@@ -48,7 +48,7 @@ res.send("Message stored in database");
 
 });
 
-/* Server */
+/* server check connection */
 
 const PORT = process.env.PORT || 3000;
 
